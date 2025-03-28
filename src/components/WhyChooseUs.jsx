@@ -1,48 +1,81 @@
 import React from "react";
+import ScrollFadeImage from "./ScrollFadeImage";
 
 import whywe1 from "../assets/whywe1.jpg";
+import moveinout1 from "../assets/moveinout1.jpg";
+import rest1 from "../assets/rest1.jpg";
 
 function WhyChooseUs() {
   const reasons = [
-    "Experienced Professionals",
-    "Customized Solutions",
-    "Eco-Friendly Products",
-    "Satisfaction Guaranteed",
+    {
+      title: "Expert Team",
+      description: "Highly trained professionals dedicated to excellence.",
+      image: whywe1,
+      icon: "👥",
+    },
+    {
+      title: "Custom Solutions",
+      description: "Tailored cleaning strategies for your unique needs.",
+      image: moveinout1,
+      icon: "🛠️",
+    },
+    {
+      title: "Eco-Friendly",
+      description: "Environmentally responsible cleaning products.",
+      image: rest1,
+      icon: "🌿",
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8 flex items-center">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-firstcare-blue mb-8">
-          Why Choose Firstcare Facility Services?
+    <div className="min-h-screen py-16 bg-gradient-to-br from-blue-100 to-white">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center text-firstcare-blue mb-16">
+          Why Choose Firstcare?
         </h2>
-        <img
-          src={whywe1}
-          alt="Why Choose Us"
-          className="mx-auto mb-8 rounded-lg shadow-lg"
-        />
-        <div className="grid md:grid-cols-2 gap-6">
-          {reasons.map((reason, index) => (
-            <div
-              key={index}
-              className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
-            >
-              <h3 className="text-xl font-semibold text-firstcare-blue mb-4">
-                {reason}
-              </h3>
-              <p>
-                {reason === "Experienced Professionals" &&
-                  "Our team consists of trained and experienced cleaning professionals who are dedicated to delivering the highest quality service."}
-                {reason === "Customized Solutions" &&
-                  "We understand that every client has unique needs. We tailor our services to fit your specific requirements."}
-                {reason === "Eco-Friendly Products" &&
-                  "We use environmentally friendly cleaning products that are safe for your family, pets, and the planet."}
-                {reason === "Satisfaction Guaranteed" &&
-                  "We are committed to exceeding your expectations. If you're not satisfied, we'll make it right!"}
-              </p>
-            </div>
-          ))}
-        </div>
+
+        {reasons.map((reason, index) => (
+          <div
+            key={index}
+            className="grid md:grid-cols-2 items-center gap-8 mb-16"
+          >
+            {index % 2 === 0 ? (
+              <>
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <span className="text-5xl">{reason.icon}</span>
+                    <h3 className="text-3xl font-semibold text-firstcare-blue">
+                      {reason.title}
+                    </h3>
+                  </div>
+                  <p className="text-gray-700">{reason.description}</p>
+                </div>
+                <ScrollFadeImage
+                  src={reason.image}
+                  alt={reason.title}
+                  className="rounded-2xl shadow-2xl"
+                />
+              </>
+            ) : (
+              <>
+                <ScrollFadeImage
+                  src={reason.image}
+                  alt={reason.title}
+                  className="rounded-2xl shadow-2xl"
+                />
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <span className="text-5xl">{reason.icon}</span>
+                    <h3 className="text-3xl font-semibold text-firstcare-blue">
+                      {reason.title}
+                    </h3>
+                  </div>
+                  <p className="text-gray-700">{reason.description}</p>
+                </div>
+              </>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
