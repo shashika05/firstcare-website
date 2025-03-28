@@ -7,7 +7,7 @@ import ScrollFadeImage from "./ScrollFadeImage";
 
 function Welcome() {
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-blue-50 to-white">
+    <div className="min-h-screen mt-16 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-blue-50 to-white">
       <div className="container mx-auto px-4 grid md:grid-cols-2 items-center gap-8">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
