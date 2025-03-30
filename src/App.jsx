@@ -18,6 +18,8 @@ import car1 from "./assets/car1.jpg"; // Adjust the path as necessary
 
 import whywe1 from "./assets/whywe1.jpg"; // Adjust the path as necessary
 
+import ScrollToTopButton from "./components/ScrollToTopButton"; // Adjust the path as necessary
+
 // Main App Component
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
@@ -66,7 +68,7 @@ export default function App() {
   };
 
   return (
-    <div className="font-sans bg-white">
+    <div className="bg-white">
       {/* Navigation Bar */}
       <nav className="fixed top-0 w-full bg-[#0413ac] text-white z-50 shadow-lg">
         <div className="container mx-auto px-4">
@@ -208,7 +210,7 @@ export default function App() {
       {/* Hero Section */}
       <section
         id="home"
-        className="pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-b from-[#0413ac]/10 to-white"
+        className="pt-28 pb-20 md:pt-32 md:pb-20 bg-gradient-to-b from-[#0413ac]/10 to-white"
       >
         <div className="container mx-auto px-4">
           <motion.div
@@ -218,9 +220,10 @@ export default function App() {
             className="flex flex-col md:flex-row items-center"
           >
             <motion.div variants={fadeIn} className="md:w-1/2 mb-8 md:mb-0">
-              <h1 className="text-4xl md:text-5xl font-black text-[#0413ac] mb-4">
+              <h1 className="text-5xl md:text-3xl lg:text-4xl font-extrabold text-[#0413ac] mb-4">
                 Welcome to Firstcare Facility Services
               </h1>
+              <div className="w-24 h-1 bg-[#eedc88] mb-4"></div>
               <p className="text-lg text-gray-700 mb-6">
                 We pride ourselves on delivering exceptional cleaning solutions
                 tailored to meet your needs in New Zealand. Our commitment to
@@ -236,7 +239,7 @@ export default function App() {
                 Get a Free Quote
               </motion.button>
             </motion.div>
-            <motion.div variants={fadeIn} className="md:w-2/3 md:ml-8">
+            <motion.div variants={fadeIn} className="md:ml-8">
               <img
                 src={cover2}
                 alt="Firstcare Cleaning Services"
@@ -247,14 +250,13 @@ export default function App() {
         </div>
       </section>
 
-      {/* Rest of the component remains the same */}
       {/* Services Section */}
       <section id="services" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={staggerContainer}
           >
             <motion.div variants={fadeIn} className="text-center mb-12">
@@ -269,7 +271,13 @@ export default function App() {
             </motion.div>
 
             {/* Commercial Cleaning */}
-            <motion.div variants={fadeIn} className="mb-16">
+            <motion.div
+              variants={fadeIn}
+              className="mb-16"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
               <h3 className="text-2xl font-bold text-[#0413ac] mb-6">
                 1. Commercial Cleaning
               </h3>
@@ -279,7 +287,7 @@ export default function App() {
                 to various sectors.
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <ServiceCard
                   title="Schools and Preschools"
                   description="Providing a safe and hygienic space for students and staff."
@@ -304,7 +312,13 @@ export default function App() {
             </motion.div>
 
             {/* Move In/Out Cleaning */}
-            <motion.div variants={fadeIn} className="mb-16">
+            <motion.div
+              variants={fadeIn}
+              className="mb-16"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
               <h3 className="text-2xl font-bold text-[#0413ac] mb-6">
                 2. Move In/Out Cleaning
               </h3>
@@ -326,13 +340,20 @@ export default function App() {
                     src={moveinout1}
                     alt="Move In/Out Cleaning"
                     className="rounded-lg shadow-lg w-full"
+                    loading="lazy"
                   />
                 </div>
               </div>
             </motion.div>
 
             {/* Specific Cleaning Services */}
-            <motion.div variants={fadeIn} className="mb-16">
+            <motion.div
+              variants={fadeIn}
+              className="mb-16"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
               <h3 className="text-2xl font-bold text-[#0413ac] mb-6">
                 3. Specific Cleaning Services
               </h3>
@@ -340,7 +361,7 @@ export default function App() {
                 We offer targeted cleaning solutions to address specific needs.
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <ServiceCard
                   title="Floor Scrubbing and Polishing"
                   description="Revitalize your floors with our professional scrubbing and polishing services, ensuring they look their best."
@@ -360,7 +381,12 @@ export default function App() {
             </motion.div>
 
             {/* Car Grooming */}
-            <motion.div variants={fadeIn}>
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
               <h3 className="text-2xl font-bold text-[#0413ac] mb-6">
                 4. Car Grooming
               </h3>
@@ -370,6 +396,7 @@ export default function App() {
                     src={car1}
                     alt="Car Grooming"
                     className="rounded-lg shadow-lg w-full"
+                    loading="lazy"
                   />
                 </div>
                 <div className="md:w-1/2 order-1 md:order-2">
@@ -615,7 +642,12 @@ export default function App() {
                         </div>
                         <div>
                           <p className="font-medium">Phone</p>
-                          <p className="text-gray-700">027 540 5400</p>
+                          <a
+                            href="tel:027 540 5400"
+                            className="text-gray-700 hover:text-[#0413ac] transition-colors"
+                          >
+                            027 540 5400
+                          </a>
                         </div>
                       </div>
                       <div className="flex items-start">
@@ -631,7 +663,12 @@ export default function App() {
                         </div>
                         <div>
                           <p className="font-medium">Email</p>
-                          <p className="text-gray-700">Info@firstcare.co.nz</p>
+                          <a
+                            href="mailto:info@firstcare.co.nz"
+                            className="text-gray-700 hover:text-[#0413ac] transition-colors"
+                          >
+                            info@firstcare.co.nz
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -732,8 +769,8 @@ export default function App() {
       {/* Footer */}
       <footer className="bg-[#0413ac] text-white py-8">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
+          <div className="flex flex-col md:flex-row md:justify-center items-center text-center">
+            <div className="mb-4 md:mb-0 md:mr-8">
               <p className="text-xl font-bold">Firstcare Facility Services</p>
               <p className="text-sm opacity-75 mt-1">
                 Quality Cleaning Solutions in New Zealand
@@ -746,18 +783,32 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      <ScrollToTopButton />
     </div>
   );
 }
 
 // Service Card Component
+{
+  /* Updated Service Card Component for better mobile performance */
+}
 const ServiceCard = ({ title, description, imageUrl }) => {
   return (
     <motion.div
       whileHover={{ y: -5 }}
-      className="bg-white rounded-lg shadow-lg overflow-hidden"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.5 }}
+      className="bg-white rounded-lg shadow-lg overflow-hidden h-full"
     >
-      <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />
+      <img
+        src={imageUrl}
+        alt={title}
+        className="w-full h-48 object-cover"
+        loading="lazy"
+      />
       <div className="p-6">
         <h4 className="font-bold text-[#0413ac] text-lg mb-2">{title}</h4>
         <p className="text-gray-700">{description}</p>
