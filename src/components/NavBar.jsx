@@ -14,25 +14,27 @@ function NavBar({ welcomeRef, servicesRef, whyChooseUsRef, contactRef }) {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-firstcare-blue shadow-md">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <div className="text-2xl font-bold italic text-firstcare-yellow flex flex-row">
-          <div>
-            <img className="h-14" src={logoBgRemowed} alt="Firstcare Logo" />
+      <div className="container py-3 mx-auto px-2 flex justify-between w-full items-center">
+        <a href="/" className="flex items-center">
+          <div className="text-2xl font-bold italic text-firstcare-yellow flex flex-row">
+            <div>
+              <img className="h-14" src={logoBgRemowed} alt="Firstcare Logo" />
+            </div>
+            <div>
+              <p>FIRSTCARE</p>
+              <p className="font-extralight text-base">FACILITY SERVICES</p>
+            </div>
           </div>
-          <div>
-            <p>FIRSTCARE</p>
-            <p className="font-extralight text-base">FACILITY SERVICES</p>
-          </div>
-        </div>
+        </a>
 
         {/* Mobile Menu Toggle */}
-        <div className="md:hidden bg-firsrcare-blue">
+        <div className="md:hidden bg-firsrcare-blue justify-end">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="bg-firstcare-blue/80 focus:outline-none"
           >
             {isMenuOpen ? (
-              <IoClose size={24} color="yellow" />
+              <IoClose size={28} color="yellow" />
             ) : (
               <FiMenu size={24} color="yellow" />
             )}
@@ -56,27 +58,27 @@ function NavBar({ welcomeRef, servicesRef, whyChooseUsRef, contactRef }) {
         >
           <button
             onClick={() => scrollToSection(welcomeRef)}
-            className="block md:inline-block hover:bg-blue-600 cursor-pointer w-full text-left rounded-2xl p-2"
+            className="block md:inline-block hover:bg-blue-600 cursor-pointer w-full text-center rounded-2xl p-2"
           >
             Home
           </button>
           <button
             onClick={() => scrollToSection(servicesRef)}
-            className="block md:inline-block hover:bg-blue-600 cursor-pointer w-full text-left rounded-2xl p-2"
+            className="block md:inline-block hover:bg-blue-600 cursor-pointer w-full text-center rounded-2xl p-2"
           >
             Services
           </button>
           <button
             onClick={() => scrollToSection(whyChooseUsRef)}
-            className="block md:inline-block hover:bg-blue-600 cursor-pointer w-full text-left rounded-2xl p-2"
+            className="block md:inline-block hover:bg-blue-600 cursor-pointer w-full text-center rounded-2xl p-2"
           >
-            Why Choose Us
+            Why We?
           </button>
           <button
             onClick={() => scrollToSection(contactRef)}
-            className="block md:inline-block hover:bg-blue-600 cursor-pointer w-full text-left rounded-2xl p-2"
+            className="block md:inline-block hover:bg-blue-600 cursor-pointer w-full text-center rounded-2xl p-2"
           >
-            Contact
+            Contact Us
           </button>
         </div>
       </div>

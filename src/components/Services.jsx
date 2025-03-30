@@ -99,7 +99,7 @@ function Services() {
                     {service.services.map((item, idx) => (
                       <motion.div
                         key={idx}
-                        className="flex items-center space-x-3 bg-white p-4 rounded-lg shadow-md"
+                        className="flex items-center space-x-3 bg-firstcare-blue text-firstcare-yellow p-4 rounded-lg shadow-md"
                         whileHover={{ scale: 1.05 }}
                       >
                         <span className="text-2xl">{item.icon}</span>
@@ -130,7 +130,7 @@ function Services() {
                     {service.services.map((item, idx) => (
                       <motion.div
                         key={idx}
-                        className="flex items-center space-x-3 bg-white p-4 rounded-lg shadow-md"
+                        className="flex items-center bg-firstcare-blue text-firstcare-yellow space-x-3 bg-white p-4 rounded-lg shadow-md"
                         whileHover={{ scale: 1.05 }}
                       >
                         <span className="text-2xl">{item.icon}</span>

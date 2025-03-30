@@ -88,6 +88,33 @@ function Contact() {
             </motion.button>
           </form>
         </motion.div>
+        <div className="bg-white p-8 flex flex-col items-center rounded-2xl shadow-2xl">
+          <p className="text-center mb-6">
+            Ready to experience the Firstcare difference? Contact us today for a
+            free quote or to schedule a service.
+          </p>
+
+          <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+            <div className="mb-4">
+              <h3 className="text-xl font-semibold text-firstcare-blue">
+                Contact Information
+              </h3>
+              <p>Phone: 027 540 5400</p>
+              <p>Email: info@firstcare.co.nz</p>
+              <p>Location: 25A Poruru Close, Papakura 2110</p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-firstcare-blue mb-4">
+                Follow Us
+              </h3>
+              <p>
+                Stay connected and follow us on social media for tips,
+                promotions, and updates!
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

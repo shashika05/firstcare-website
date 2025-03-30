@@ -4,10 +4,10 @@
 /* Custom styles */
 
 :root {
+  font-family: "Poppins", sans-serif;
   /* Custom color palette */
   --color-firstcare-yellow: 228 220 136;
   --color-firstcare-blue: 1 17 174;
-  font-family: "Poppins", sans-serif;
 }
 
 @layer base {
