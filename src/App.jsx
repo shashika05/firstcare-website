@@ -1,24 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import "./App.css"; // Assuming you have a CSS file for styles
+import "./App.css";
 
-import logoBgRemowed from "./assets/logoBgRemowed.png"; // Adjust the path as necessary
-import cover2 from "./assets/cover2.jpg"; // Adjust the path as necessary
-import scl1 from "./assets/scl1.jpg"; // Adjust the path as necessary
-import hospital1 from "./assets/hospital1.jpg"; // Adjust the path as necessary
-import office1 from "./assets/office1.jpg"; // Adjust the path as necessary
-import rest1 from "./assets/rest1.jpg"; // Adjust the path as necessary
+import logoBgRemowed from "./assets/logoBgRemowed.png";
+import cover2 from "./assets/cover2.jpg";
+import scl1 from "./assets/scl1.jpg";
+import hospital1 from "./assets/hospital1.jpg";
+import office1 from "./assets/office1.jpg";
+import rest1 from "./assets/rest1.jpg";
+import moveinout1 from "./assets/moveinout1.jpg";
+import floor1 from "./assets/floor1.jpg";
+import carpet1 from "./assets/carpet1.jpg";
+import highWindow1 from "./assets/highWindow1.jpg";
+import car1 from "./assets/car1.jpg";
+import whywe1 from "./assets/whywe1.jpg";
 
-import moveinout1 from "./assets/moveinout1.jpg"; // Adjust the path as necessary
-import floor1 from "./assets/floor1.jpg"; // Adjust the path as necessary
-import carpet1 from "./assets/carpet1.jpg"; // Adjust the path as necessary
-import highWindow1 from "./assets/highWindow1.jpg"; // Adjust the path as necessary
-import car1 from "./assets/car1.jpg"; // Adjust the path as necessary
-
-import whywe1 from "./assets/whywe1.jpg"; // Adjust the path as necessary
-
-import ScrollToTopButton from "./components/ScrollToTopButton"; // Adjust the path as necessary
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 // Main App Component
 export default function App() {
@@ -45,6 +43,88 @@ export default function App() {
     },
   };
 
+  // Set up intersection observer to update active section on scroll
+  useEffect(() => {
+    const sectionIds = ["home", "services", "why-us", "contact"];
+
+    // Create a map to store the intersection ratios of each section
+    const sectionIntersectionRatios = new Map();
+
+    const options = {
+      root: null,
+      rootMargin: "-10% 0px -10% 0px", // Adjust this for better detection
+      threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8], // Multiple thresholds for more granular detection
+    };
+
+    const handleIntersect = (entries) => {
+      // Update the intersection ratio for each entry
+      entries.forEach((entry) => {
+        sectionIntersectionRatios.set(entry.target.id, entry.intersectionRatio);
+      });
+
+      // Find the section with the highest intersection ratio
+      let maxRatio = 0;
+      let maxSection = activeSection; // Default to current active section
+
+      sectionIntersectionRatios.forEach((ratio, section) => {
+        if (ratio > maxRatio) {
+          maxRatio = ratio;
+          maxSection = section;
+        }
+      });
+
+      // Only update if we have a meaningful intersection
+      if (maxRatio > 0.1) {
+        setActiveSection(maxSection);
+      }
+    };
+
+    // Create observer
+    const observer = new IntersectionObserver(handleIntersect, options);
+
+    // Observe all sections
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        observer.observe(element);
+        // Initialize with zero ratio
+        sectionIntersectionRatios.set(id, 0);
+      }
+    });
+
+    // Cleanup function
+    return () => {
+      sectionIds.forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) {
+          observer.unobserve(element);
+        }
+      });
+    };
+  }, [activeSection]); // Empty dependency array means this runs once on mount
+
+  // Track scroll direction to improve active section detection
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+
+      // If near the top of the page, ensure home is active
+      if (scrollY < 100) {
+        setActiveSection("home");
+      }
+
+      // If near the bottom of the page, ensure contact is active
+      if (scrollY + window.innerHeight >= document.body.offsetHeight - 100) {
+        setActiveSection("contact");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   // Scroll to section with improved handling for mobile
   const scrollToSection = (sectionId) => {
     // First close the mobile menu
@@ -57,7 +137,15 @@ export default function App() {
     setTimeout(() => {
       const element = document.getElementById(sectionId);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        const headerOffset = 80; // Adjust this based on your header height
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
       }
     }, 100); // Small delay to allow menu animation to start
   };
@@ -100,7 +188,7 @@ export default function App() {
             <div className="md:hidden">
               <button
                 onClick={toggleMobileMenu}
-                className="text-white focus:outline-none"
+                className="text-white focus:outline-none hover:bg-blue-500 p-2 rounded-lg transition-colors"
               >
                 <svg
                   className="h-6 w-6"
@@ -126,7 +214,7 @@ export default function App() {
             <div className="hidden md:flex space-x-6">
               <button
                 onClick={() => scrollToSection("home")}
-                className={`hover:text-[#eedc88] transition-colors ${
+                className={`hover:text-[#eedc88] hover:bg-blue-500 p-2 rounded-2xl transition-colors ${
                   activeSection === "home" ? "text-[#eedc88]" : ""
                 }`}
               >
@@ -134,7 +222,7 @@ export default function App() {
               </button>
               <button
                 onClick={() => scrollToSection("services")}
-                className={`hover:text-[#eedc88] transition-colors ${
+                className={`hover:text-[#eedc88] hover:bg-blue-500 p-2 rounded-2xl transition-colors ${
                   activeSection === "services" ? "text-[#eedc88]" : ""
                 }`}
               >
@@ -142,7 +230,7 @@ export default function App() {
               </button>
               <button
                 onClick={() => scrollToSection("why-us")}
-                className={`hover:text-[#eedc88] transition-colors ${
+                className={`hover:text-[#eedc88] hover:bg-blue-500 p-2 rounded-2xl transition-colors ${
                   activeSection === "why-us" ? "text-[#eedc88]" : ""
                 }`}
               >
@@ -150,11 +238,11 @@ export default function App() {
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className={`hover:text-[#eedc88] transition-colors ${
+                className={`hover:text-[#eedc88] hover:bg-blue-500 p-2 rounded-2xl transition-colors ${
                   activeSection === "contact" ? "text-[#eedc88]" : ""
                 }`}
               >
-                Contact
+                Contact Us
               </button>
             </div>
           </div>
@@ -173,7 +261,7 @@ export default function App() {
           <div className="flex flex-col space-y-3 px-4 py-2">
             <button
               onClick={() => scrollToSection("home")}
-              className={`text-left py-2 ${
+              className={`text-left p-2 rounded-xl hover:bg-blue-500 ${
                 activeSection === "home" ? "text-[#eedc88]" : "text-white"
               }`}
             >
@@ -181,7 +269,7 @@ export default function App() {
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className={`text-left py-2 ${
+              className={`text-left p-2 rounded-xl hover:bg-blue-500 ${
                 activeSection === "services" ? "text-[#eedc88]" : "text-white"
               }`}
             >
@@ -189,7 +277,7 @@ export default function App() {
             </button>
             <button
               onClick={() => scrollToSection("why-us")}
-              className={`text-left py-2 ${
+              className={`text-left p-2 rounded-xl hover:bg-blue-500 ${
                 activeSection === "why-us" ? "text-[#eedc88]" : "text-white"
               }`}
             >
@@ -197,11 +285,11 @@ export default function App() {
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className={`text-left py-2 ${
+              className={`text-left p-2 rounded-xl hover:bg-blue-500 ${
                 activeSection === "contact" ? "text-[#eedc88]" : "text-white"
               }`}
             >
-              Contact
+              Contact Us
             </button>
           </div>
         </motion.div>
@@ -587,7 +675,7 @@ export default function App() {
                       Message
                     </label>
                     <textarea
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0413ac] h-32"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0413ac] h-52"
                       id="message"
                     ></textarea>
                   </div>
@@ -623,12 +711,28 @@ export default function App() {
                             />
                           </svg>
                         </div>
-                        <div>
-                          <p className="font-medium">Address</p>
-                          <p className="text-gray-700">
+                        <div className="hover:text-blue-700 hover:underline">
+                          <a
+                            href="https://maps.app.goo.gl/81JSZCWQVepVe9KJA?g_st=iw"
+                            target="_blank"
+                          >
+                            <p className="font-medium">Address</p>
                             25A Poruru Close, Papakura 2110
-                          </p>
+                          </a>
                         </div>
+                      </div>
+                      <div className="rounded-lg overflow-hidden h-42 w-full shadow">
+                        <iframe
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.1467297525626!2d174.933982!3d-36.972144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d571c49a23a61%3A0xbf16e6ae7a71910e!2s25A%20Poruru%20Close%2C%20Papakura%2C%20Auckland%202110%2C%20New%20Zealand!5e0!3m2!1sen!2s!4v1712013698541!5m2!1sen!2s"
+                          width="100%"
+                          height="100%"
+                          style={{ border: 0 }}
+                          allowFullScreen=""
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                          title="Firstcare Location"
+                          className="rounded-lg shadow"
+                        ></iframe>
                       </div>
                       <div className="flex items-start">
                         <div className="text-[#0413ac] mr-3 mt-1">
@@ -641,11 +745,11 @@ export default function App() {
                           </svg>
                         </div>
                         <div>
-                          <p className="font-medium">Phone</p>
                           <a
                             href="tel:027 540 5400"
-                            className="text-gray-700 hover:text-[#0413ac] transition-colors"
+                            className="text-gray-700 hover:text-[#0413ac] hover:underline transition-colors"
                           >
+                            <p className="font-medium">Phone</p>
                             027 540 5400
                           </a>
                         </div>
@@ -662,11 +766,11 @@ export default function App() {
                           </svg>
                         </div>
                         <div>
-                          <p className="font-medium">Email</p>
                           <a
                             href="mailto:info@firstcare.co.nz"
-                            className="text-gray-700 hover:text-[#0413ac] transition-colors"
+                            className="text-gray-700 hover:text-[#0413ac] hover:underline transition-colors"
                           >
+                            <p className="font-medium">Email</p>
                             info@firstcare.co.nz
                           </a>
                         </div>
@@ -681,7 +785,7 @@ export default function App() {
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span className="text-gray-700">Monday - Friday</span>
-                        <span className="font-medium">8:00 AM - 6:00 PM</span>
+                        <span className="font-medium">9:00 AM - 5:30 PM</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-700">Saturday</span>
@@ -689,7 +793,7 @@ export default function App() {
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-700">Sunday</span>
-                        <span className="font-medium">Closed</span>
+                        <span className="font-medium text-red-600">Closed</span>
                       </div>
                     </div>
                   </div>
