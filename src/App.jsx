@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { FaFacebook } from "react-icons/fa";
 import "./App.css";
 
 import logoBgRemowed from "./assets/logoBgRemowed.png";
@@ -746,11 +747,11 @@ export default function App() {
                         </div>
                         <div>
                           <a
-                            href="tel:027 540 5400"
+                            href="tel:022 165 1771"
                             className="text-gray-700 hover:text-[#0413ac] hover:underline transition-colors"
                           >
                             <p className="font-medium">Phone</p>
-                            027 540 5400
+                            022 165 1771
                           </a>
                         </div>
                       </div>
@@ -800,7 +801,7 @@ export default function App() {
 
                   <div className="mt-8">
                     <h3 className="text-xl font-bold text-[#0413ac] mb-4">
-                      Follow Us
+                      Follow Us On
                     </h3>
                     <div className="flex space-x-4">
                       <motion.a
@@ -808,58 +809,7 @@ export default function App() {
                         whileHover={{ scale: 1.1 }}
                         className="bg-[#0413ac] text-white p-2 rounded-full"
                       >
-                        <svg
-                          className="w-5 h-5"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="M22 12.586V12C22 6.477 17.523 2 12 2S2 6.477 2 12s4.477 10 10 10c1.33 0 2.618-.26 3.82-.773M15 12V8m-3 8v-8m-3 4v-4"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </motion.a>
-                      <motion.a
-                        href="#"
-                        whileHover={{ scale: 1.1 }}
-                        className="bg-[#0413ac] text-white p-2 rounded-full"
-                      >
-                        <svg
-                          className="w-5 h-5"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M18 2H6a4 4 0 00-4 4v12a4 4 0 004 4h12a4 4 0 004-4V6a4 4 0 00-4-4zm-3 8h-2v2h2v6h-3v-6h-2v-2h2V9c0-1.1.9-2 2-2h2v3z" />
-                        </svg>
-                      </motion.a>
-                      <motion.a
-                        href="#"
-                        whileHover={{ scale: 1.1 }}
-                        className="bg-[#0413ac] text-white p-2 rounded-full"
-                      >
-                        <svg
-                          className="w-5 h-5"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742C20.247 9.977 20.5 6.503 18 5c-.199-.1-.41-.105-.6-.303-.53-.307-1.01-.873-2-1z" />
-                        </svg>
-                      </motion.a>
-                      <motion.a
-                        href="#"
-                        whileHover={{ scale: 1.1 }}
-                        className="bg-[#0413ac] text-white p-2 rounded-full"
-                      >
-                        <svg
-                          className="w-5 h-5"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M2.149 0l-0.898 5.298-1.25 7.393h19.499l-1.25-7.393-0.898-5.298zM16.608 17.993l-3.608-2-3.608 2 0.899-3.696-2.99-2.595 3.659-0.499 1.75-3.204 1.75 3.204 3.659 0.499-2.99 2.595z"></path>
-                        </svg>
+                        <FaFacebook />
                       </motion.a>
                     </div>
                   </div>
