@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import { FaFacebook } from "react-icons/fa";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 import "./App.css";
 
 import logoBgRemowed from "./assets/logoBgRemowed.png";
@@ -676,7 +676,7 @@ export default function App() {
                       Message
                     </label>
                     <textarea
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0413ac] h-52"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0413ac] h-28"
                       id="message"
                     ></textarea>
                   </div>
@@ -721,19 +721,6 @@ export default function App() {
                             25A Poruru Close, Papakura 2110
                           </a>
                         </div>
-                      </div>
-                      <div className="rounded-lg overflow-hidden h-42 w-full shadow">
-                        <iframe
-                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.1467297525626!2d174.933982!3d-36.972144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d571c49a23a61%3A0xbf16e6ae7a71910e!2s25A%20Poruru%20Close%2C%20Papakura%2C%20Auckland%202110%2C%20New%20Zealand!5e0!3m2!1sen!2s!4v1712013698541!5m2!1sen!2s"
-                          width="100%"
-                          height="100%"
-                          style={{ border: 0 }}
-                          allowFullScreen=""
-                          loading="lazy"
-                          referrerPolicy="no-referrer-when-downgrade"
-                          title="Firstcare Location"
-                          className="rounded-lg shadow"
-                        ></iframe>
                       </div>
                       <div className="flex items-start">
                         <div className="text-[#0413ac] mr-3 mt-1">
@@ -810,6 +797,13 @@ export default function App() {
                         className="bg-[#0413ac] text-white p-2 rounded-full"
                       >
                         <FaFacebook />
+                      </motion.a>
+                      <motion.a
+                        href="#"
+                        whileHover={{ scale: 1.1 }}
+                        className="bg-[#0413ac] text-white p-2 rounded-full"
+                      >
+                        <FaInstagram />
                       </motion.a>
                     </div>
                   </div>
